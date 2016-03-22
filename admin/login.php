@@ -8,6 +8,7 @@ if(isset($_GET['message'])){
 	<p class="bg-danger"><?php echo $_GET['message']; ?></p>
 	<?php
 }
+
 if(isset($_SESSION["email"]) && isset($_SESSION["password"])){
 	header("Location: index.php");
 	//session_destroy();
@@ -20,14 +21,22 @@ if(isset($_POST['submit'])){
 	$password= $_POST['password'];
 	if((isset($email) && !empty($email)) &&
 			(isset($password) && !empty($password))){
-		$sql = "select *from users where email='$email' AND password='$password'";
+		$sql = "select hidden from users where email='$email' AND password='$password'";
 		$result = $databaseConnection->loginUser($sql);	
-			if($result==true){
+			if($result){
+				$row = $result->fetch_assoc();
 				if(isset($_POST['remember'])){
 					$_SESSION["email"] = $email;
 					$_SESSION["password"] =$password;
-					echo $_SESSION["email"];
+					$_SESSION["hidden"] =$row['hidden'];
+						
+					//echo $_SESSION["email"];
+					
+				
 				}
+				$_SESSION["hidden"] =$row['hidden'];
+						
+				header("Location: index.php?msg=Successfully Login");
 			//	echo"Match";
 				
 			}

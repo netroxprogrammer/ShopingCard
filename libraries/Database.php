@@ -34,11 +34,26 @@ class Database{
 	public function loginUser($query){
 		$result = $this->link->query($query) or die("Sorry error. ".$this->link->errno. __LINE__);
 		if($result->num_rows>0){
-			return true;
+			return $result;
 		}
 		else{
 			return false;
 		}
 	}
+	
+	/**
+	 * @Function get User Profile Form Database
+	 */
+	public function userProfile($query){
+		$result = $this->link->query($query) or die("Sorry error. ".$this->link->errno. __LINE__);
+		if($result->num_rows>0){
+			return $result;
+		}
+		else{
+			return false;
+		}
+	}
+	
+	
 }
 ?>
