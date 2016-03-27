@@ -28,6 +28,7 @@ class Database{
 			$this->error="Connection Error ".$this->link->error;
 		}
 	}
+	
 	/**
 	 * @Function Search  Email and  password for  login
 	 */

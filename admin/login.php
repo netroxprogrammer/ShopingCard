@@ -1,7 +1,9 @@
+
+<?php session_start();?>
 <?php include_once 'includes/header.php' ?>
 
 <?php 
-session_start(); //   start Sessions
+//   start Sessions
 $databaseConnection = new Database();
 if(isset($_GET['message'])){
 	?>
@@ -9,10 +11,17 @@ if(isset($_GET['message'])){
 	<?php
 }
 
-if(isset($_SESSION["email"]) && isset($_SESSION["password"])){
-	header("Location: index.php");
+/**
+ * Check User Session Already Exist
+ */
+
+if(isset($_SESSION["email"]) && isset($_SESSION["password"]) ||
+		 isset($_SESSION['hidden']) && isset($_SESSION['role'])){
+	header("Location: index.php?msg=already Login");
 	//session_destroy();
 }
+
+
 else{
 
 
@@ -21,7 +30,7 @@ if(isset($_POST['submit'])){
 	$password= $_POST['password'];
 	if((isset($email) && !empty($email)) &&
 			(isset($password) && !empty($password))){
-		$sql = "select hidden from users where email='$email' AND password='$password'";
+		$sql = "select hidden,role from users where email='$email' AND password='$password'";
 		$result = $databaseConnection->loginUser($sql);	
 			if($result){
 				$row = $result->fetch_assoc();
@@ -29,13 +38,14 @@ if(isset($_POST['submit'])){
 					$_SESSION["email"] = $email;
 					$_SESSION["password"] =$password;
 					$_SESSION["hidden"] =$row['hidden'];
-						
+					$_SESSION["role"] =$row['role'];
 					//echo $_SESSION["email"];
 					
 				
 				}
 				$_SESSION["hidden"] =$row['hidden'];
-						
+				$_SESSION["role"] =$row['role'];
+				//echo $_SESSION["email"];
 				header("Location: index.php?msg=Successfully Login");
 			//	echo"Match";
 				
