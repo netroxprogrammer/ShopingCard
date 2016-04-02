@@ -1,6 +1,6 @@
 <?php include_once '/../../config/config.php';?>
 <?php include_once '/../../libraries/Database.php';?>
-
+<?php include_once '/../../libraries/Upload.php';?>
 <html lang="en">
   <head>
     <meta charset="utf-8">
