@@ -1,6 +1,10 @@
 <?php include_once '/../../config/config.php';?>
+<?php include_once '/../../config/Links.php';?>
 <?php include_once '/../../libraries/Database.php';?>
 <?php include_once '/../../libraries/Upload.php';?>
+<?php 
+$links = new SetLinks();
+?>
 <html lang="en">
   <head>
     <meta charset="utf-8">
@@ -21,14 +25,15 @@
  <nav class="navbar navbar-inverse navbar-fixed-top">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" href="#">Php Shoping Cart</a>
+      <a class="navbar-brand" href="index.php">Php Shoping Cart</a>
     </div>
     <ul class="nav navbar-nav">
-      <li class="active"><a href="index.php">Home</a></li>
-      <li><a href="addProduct.php">Add Products</a></li>
-      <li><a href="#">Search</a></li> 
-      <li><a href="#">Edit</a></li> 
-       <li><a href="#">Users Information</a></li>
+    <?php $links->addLinks("index.php","addProduct.php","","","");?>
+      <li class="active"><a href="<?php echo $links->homepage ?>">Home</a></li>
+      <li><a href="<?php echo $links->addProductPage?>">Add Products</a></li>
+      <li><a href="<?php echo $links->search?>">Search</a></li> 
+      <li><a href="<?php echo $links->Edit?>">Edit</a></li> 
+       <li><a href="<?php echo $links->usersInformation?>">Users Information</a></li>
     </ul>
     
     <ul class="nav navbar-nav navbar-right">

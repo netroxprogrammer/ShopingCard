@@ -1,4 +1,5 @@
 <?php include_once '/../../config/config.php';?>
+<?php include_once '/../../libraries/Upload.php';?>
 <?php include_once '/../../libraries/Database.php';?>
 <html lang="en">
   <head>

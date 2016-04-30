@@ -1,5 +1,6 @@
 <?php
 class Upload{
+	
 	function uploadImage(){
 		$allowedExts = array("gif", "jpeg", "jpg", "png");
 		

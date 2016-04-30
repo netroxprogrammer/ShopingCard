@@ -8,8 +8,7 @@ if(!isset($_SESSION['email']) && !isset($_SESSION['password']) && !isset($_SESSI
 	header("Location: login.php?msg=Please Login");
 
 }
-
-else if(isset($_SESSION['role']) && $_SESSION['role']!="admin"){
+else if(isset($_SESSION['role']) && $_SESSION['role']!="user"){
 	header("Location: logout.php?msg=PleaseLogin");
 }
 
@@ -31,7 +30,7 @@ if(isset($_POST['submit'])){
 		//$file = $_POST["file"];
 		$category = $_POST["category"];
 		$POwner = $_POST["POwner"];
-		$photoPath=$adminUplaod.$upload->uploadImage();
+		$photoPath=$usersUplaod.$upload->uploadImage();
 		$UserId=$_SESSION["id"];
 	/* $sql = "INSERT into productstack(product_Id,product_Name,product_Price,
 			product_disc,product_Photo,product_From,product_Category) values

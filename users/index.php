@@ -10,11 +10,10 @@ header("Location: login.php?msg=Please Login");
 	
 }
 
- else if(isset($_SESSION['role']) && $_SESSION['role']!="admin"){
+ else if(isset($_SESSION['role']) && $_SESSION['role']!="user"){
 	header("Location: logout.php?msg=PleaseLogin");
-}  
-else if(!isset($_SESSION['email']) && !isset($_SESSION['password']) 
-		|| isset($_SESSION['hidden'])){
+} 
+else if((isset($_SESSION['hidden']) && isset($_SESSION['role']) && $_SESSION['role']=="user")){
 			
 	$hidden = $_SESSION['hidden'];
 	
@@ -46,8 +45,6 @@ else if(!isset($_SESSION['email']) && !isset($_SESSION['password'])
      <button type="button" class="btn btn-info btn-xs">Edit</button>
      </div> </a></div>
      </div>
-     
-     
      <br><br><br><br><br><br><br> <br><br><br><br><br><br><br>
      <div class="btn btn-primary  btn-lg btn-block">My Posts</div>
   <?php   

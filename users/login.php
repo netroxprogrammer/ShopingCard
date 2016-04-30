@@ -16,7 +16,7 @@ if(isset($_GET['message'])){
  */
 
 if(isset($_SESSION["email"]) && isset($_SESSION["password"]) ||
-		 isset($_SESSION['hidden']) && isset($_SESSION['role'])){
+		 isset($_SESSION['hidden']) && isset($_SESSION['role']) && $_SESSION['role']=="user"){
 	header("Location: index.php?msg=already Login");
 	//session_destroy();
 }
