@@ -3,7 +3,7 @@
 
 <?php include_once 'includes/slideShow.php'; ?><br>
 <?php 
-
+$dbConnection = new Database();
 if(!isset($_SESSION['email']) && !isset($_SESSION['password']) && !isset($_SESSION['hidden'])){
 	header("Location: login.php?msg=Please Login");
 
@@ -18,7 +18,7 @@ else if(!isset($_SESSION['email']) && !isset($_SESSION['password'])
 	
 if(isset($_POST['submit'])){
 	$upload = new Upload();
-	$dbConnection = new Database();
+	
 	
 	if(isset($_POST["PName"]) && !empty($_POST["PName"])&&
 	isset($_POST["PPrice"]) && !empty($_POST["PPrice"]) &&
@@ -104,15 +104,17 @@ if(isset($_POST['submit'])){
     <div class="row">
   <div class="col-xs-12 well">
    <label for="category">Category</label>
-   <select name="category" class="form-control">
-  <option>Games</option>
-  <option>Videos</option>
-  <option>Cds</option>
-  <option>Clothes</option>
-  <option>Toys</option>
-  <option>Books</option>
-  <option>Mobiles</option>
-  <option>Computers</option>
+   <?php $sql = "Select *from categories";
+	$categories =$dbConnection->showProducts($sql);?>
+	<select name="category" class="form-control">
+   <?php while($catg= $categories->fetch_assoc()){ ?>
+   
+  
+  <option value="<?php echo $catg["id"]; ?>"><?php echo $catg["category_Name"] ?></option>
+  
+  
+
+<?php }?>
 </select>
   </div>
   </div>
